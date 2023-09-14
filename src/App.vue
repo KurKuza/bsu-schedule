@@ -1,29 +1,27 @@
-<template>
-  <v-app>
-    <schedule-nav-bar></schedule-nav-bar>
-    <v-main>
-      <router-view />
-    </v-main>
-  </v-app>
-</template>
+<script lang="ts">
+import { defineComponent } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
 
-<script>
-import scheduleNavBar from "@/components/NavBarMobile/TheNavbarMobile.vue";
-
-export default {
-  name: "App",
-
-  components: { scheduleNavBar },
-  data: () => ({}),
-  created() {
-    this.$store.commit("INIT");
-    this.$vuetify.theme.dark = this.$store.getters.getTheme;
+export default defineComponent({
+  name: 'App',
+  components: {
+    HelloWorld,
   },
-};
+});
 </script>
 
-<style>
-html {
-  overflow-y: auto;
+<template>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+</template>
+
+<style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
