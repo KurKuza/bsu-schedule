@@ -1,6 +1,17 @@
 <script setup lang="ts">
 import { SearchOutlined, StarOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import { Typography, Button } from 'ant-design-vue';
+import Parsers from '@/parser/parsers.js';
+
+const parser = new Parsers();
+
+const fetch = () => {
+  parser.fetchGroup({ group: '12002302', week: '1' }).then((res) => {
+    console.log('res', res);
+  });
+};
+
+fetch();
 </script>
 
 <template>
@@ -8,7 +19,7 @@ import { Typography, Button } from 'ant-design-vue';
     <a-typography-title class="title" :level="4">Расписание</a-typography-title>
 
     <div class="icons">
-      <Button type="primary" shape="circle" size="middle">
+      <Button @click="fetch" type="primary" shape="circle" size="middle">
         <SearchOutlined class="icon" />
       </Button>
       <Button type="primary" shape="circle" size="middle">
