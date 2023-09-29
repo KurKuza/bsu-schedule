@@ -1,0 +1,7 @@
+{
+  "name": "bsu-schedule",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

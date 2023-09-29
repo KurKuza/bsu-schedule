@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { SearchOutlined, StarOutlined, SettingOutlined } from '@ant-design/icons-vue';
-import { Typography, Button } from 'ant-design-vue';
-import Parsers from '@/parser/parsers.js';
+import { Button } from 'ant-design-vue';
+import { ScheduleApi } from '@/shared/api';
 
-const parser = new Parsers();
-
-const fetch = () => {
-  parser.fetchGroup({ group: '12002302', week: '1' }).then((res) => {
-    console.log('res', res);
-  });
-};
-
-fetch();
+async function fetch() {
+  const schedule = await (await ScheduleApi.getSchedule()).json();
+  console.log(schedule);
+}
 </script>
 
 <template>
@@ -19,13 +14,13 @@ fetch();
     <a-typography-title class="title" :level="4">Расписание</a-typography-title>
 
     <div class="icons">
-      <Button @click="fetch" type="primary" shape="circle" size="middle">
+      <Button @click="fetch" shape="circle">
         <SearchOutlined class="icon" />
       </Button>
-      <Button type="primary" shape="circle" size="middle">
+      <Button shape="circle">
         <StarOutlined class="icon" />
       </Button>
-      <Button type="primary" shape="circle" size="middle">
+      <Button shape="circle">
         <SettingOutlined class="icon" />
       </Button>
     </div>
