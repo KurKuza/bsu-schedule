@@ -19,6 +19,7 @@
     "@feature-sliced/eslint-config": "^0.1.0-beta.6",
     "@fontsource/roboto": "^4.5.7",
     "ant-design-vue": "^4.0.3",
+    "axios": "^1.5.1",
     "core-js": "^3.8.3",
     "cupertino-pane": "github:roman-rr/cupertino-pane",
     "dateformat": "^5.0.3",

@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import Header from '@/components/Header.vue';
-import './styles/styles.scss';
+import './styles/base.scss';
+import Container from './layouts/container.vue';
+import { Header } from '@/widgets/header';
+import { CardSchedule } from '@/widgets/card-schedule';
 </script>
 
 <template>
-  <Header />
+  <Container>
+    <Header />
+    <CardSchedule />
+  </Container>
 </template>
 
 <style scoped>

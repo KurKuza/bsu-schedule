@@ -4,7 +4,7 @@ import { Button } from 'ant-design-vue';
 import { ScheduleApi } from '@/shared/api';
 
 async function fetch() {
-  const schedule = await (await ScheduleApi.getSchedule()).json();
+  const schedule = await ScheduleApi.getSchedule();
   console.log(schedule);
 }
 </script>
@@ -34,9 +34,7 @@ async function fetch() {
   justify-content: space-between;
   padding: 12px 16px;
 }
-.title {
-  margin: 0;
-}
+
 .icons {
   display: flex;
   align-items: center;
