@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { SearchOutlined, StarOutlined, SettingOutlined } from '@ant-design/icons-vue';
 import { Button } from 'ant-design-vue';
-import { ScheduleApi } from '@/shared/api';
+import { ref } from 'vue';
+import { OnClickOutside } from '@vueuse/components';
 
-async function fetch() {
-  const schedule = await ScheduleApi.getSchedule();
-  console.log(schedule);
-}
+const isSearch = ref(false);
+
+const handleSearch = () => {
+  isSearch.value = !isSearch.value;
+};
 </script>
 
 <template>
@@ -14,9 +16,21 @@ async function fetch() {
     <a-typography-title class="title" :level="4">Расписание</a-typography-title>
 
     <div class="icons">
-      <Button @click="fetch" shape="circle">
-        <SearchOutlined class="icon" />
-      </Button>
+      <div class="search-container">
+        <Button v-if="!isSearch" @click="handleSearch" shape="circle">
+          <SearchOutlined class="icon" />
+        </Button>
+
+        <OnClickOutside v-else @trigger="handleSearch">
+          <a-input-search
+            bordered="false"
+            ref="isSearch"
+            class="search"
+            placeholder="input search text"
+            style="width: 200px"
+          />
+        </OnClickOutside>
+      </div>
       <Button shape="circle">
         <StarOutlined class="icon" />
       </Button>
@@ -33,6 +47,10 @@ async function fetch() {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+}
+
+.search {
+  width: 100% !important;
 }
 
 .icons {
