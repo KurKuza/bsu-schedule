@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import './styles/base.scss';
 import Container from './layouts/container.vue';
 import { Header } from '@/widgets/header';
 import { CardSchedule } from '@/widgets/card-schedule';

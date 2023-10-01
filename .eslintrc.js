@@ -1,17 +1,20 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
     node: true,
   },
   extends: [
     '@feature-sliced',
-    'plugin:vue/vue3-essential',
-    '@vue/airbnb',
     '@vue/typescript/recommended',
     'prettier',
+    'airbnb-base',
+    'plugin:vue/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    parser: 'babel-eslint',
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
