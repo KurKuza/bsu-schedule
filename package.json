@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "bun --bun vite --host",
-    "build": "bun --bun vite build",
+    "build": "bun vite build",
     "preview": "vite preview",
     "ionic:build": "npm run build",
     "ionic:serve": "npm run dev"
