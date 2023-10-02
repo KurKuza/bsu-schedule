@@ -21,13 +21,13 @@ function convertMsToLocalTime(ms: number) {
 
 <template>
   <a-layout class="container" direction="horizontal">
-    <a-layout-sider class="sidebar" align="center" directions="vertical">
+    <div class="sidebar" align="center" directions="vertical">
       {{ convertMsToLocalTime(props.schedule.timestart) }}
       <a-typography-title :level="4" class="title">{{
         props.schedule.pairnumber
       }}</a-typography-title>
       {{ convertMsToLocalTime(props.schedule.timeend) }}
-    </a-layout-sider>
+    </div>
     <a-divider class="divider" orientation="center" type="vertical" />
     <a-layout-content direction="vertical">
       <Content :schedule="props.schedule" />
