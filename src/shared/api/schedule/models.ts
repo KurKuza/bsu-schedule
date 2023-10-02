@@ -1,33 +1,14 @@
-export interface ScheduleType {
-  pairnumber: number;
-  timestart: number;
-  timeend: number;
-  edworkkind: string;
-  subgroup?: string;
-  dis: string;
-  room?: Room;
-  online: boolean;
-  withdist: boolean;
-  teacher?: Teacher;
-  links?: Link[];
-}
+// https://beluni.ru/schedule/g/12002331?from=2023-09-25&to=2023-10-01&qdist=1
 
-export interface Room {
-  id: number;
-  name: string;
-  area: string;
-  address: string;
-}
+import { apiInstance } from '../lib/axios';
+import { ScheduleType } from './types';
 
-export interface Teacher {
-  id: number;
-  name: string;
-  dep: string;
-  subdep: string;
-  pos: string;
-}
-
-export interface Link {
-  href: string;
-  name: string;
-}
+export const ScheduleApi = {
+  getSchedule: () => {
+    return apiInstance.get<ScheduleType[]>(
+      '/schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1',
+    );
+  },
+};
+// Группа 12002302
+// /schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1

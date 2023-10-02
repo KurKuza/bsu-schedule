@@ -1,2 +1,2 @@
-export * from './schedule';
-export type * from './models';
+export * from './models';
+export type * from './types';

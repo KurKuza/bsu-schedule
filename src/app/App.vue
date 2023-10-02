@@ -2,11 +2,14 @@
 import Container from './layouts/container.vue';
 import { Header } from '@/widgets/header';
 import { CardSchedule } from '@/widgets/card-schedule';
+import ThemeProvider from './providers/theme.vue';
 </script>
 
 <template>
-  <Container>
-    <Header />
-    <CardSchedule />
-  </Container>
+  <ThemeProvider>
+    <Container>
+      <Header />
+      <CardSchedule />
+    </Container>
+  </ThemeProvider>
 </template>

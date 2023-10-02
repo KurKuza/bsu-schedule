@@ -3,6 +3,9 @@ import { SearchOutlined, StarOutlined, SettingOutlined } from '@ant-design/icons
 import { Button } from 'ant-design-vue';
 import { ref } from 'vue';
 import { OnClickOutside } from '@vueuse/components';
+import { useThemeStore } from '@/entities/theme';
+
+const { toggleTheme } = useThemeStore();
 
 const isSearch = ref(false);
 
@@ -14,6 +17,7 @@ const handleSearch = () => {
 <template>
   <div class="header">
     <a-typography-title class="title" :level="4">Расписание</a-typography-title>
+    <button @click="toggleTheme">Toggle Theme</button>
 
     <div class="icons">
       <div class="search-container">

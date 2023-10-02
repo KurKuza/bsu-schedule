@@ -7,7 +7,6 @@ const schedules = ref<ScheduleType[]>();
 
 async function fetch() {
   const schedulesRes = await ScheduleApi.getSchedule();
-  console.log(schedulesRes.data);
   schedules.value = schedulesRes.data;
 }
 
@@ -23,8 +22,12 @@ fetch();
 
 <style scoped lang="scss">
 .schedule-container {
-  background-color: #fff;
   border-radius: 1rem;
   padding: 1rem;
+  background-color: #fff;
+}
+
+[data-theme='dark'] .schedule-container {
+  background-color: #141414;
 }
 </style>
