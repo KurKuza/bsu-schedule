@@ -12,7 +12,7 @@ const props = defineProps({
 console.log(props.schedule.timeend);
 
 function convertMsToLocalTime(ms: number) {
-  const date = new Date(ms);
+  const date = new Date(ms * 1000);
   return date.toLocaleTimeString('ru-RU', {
     hour: '2-digit',
     minute: '2-digit',
