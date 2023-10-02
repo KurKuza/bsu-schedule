@@ -3,7 +3,7 @@ import { Layout } from 'ant-design-vue';
 </script>
 
 <template>
-  <Layout class="layout">
+  <Layout>
     <Content class="container">
       <slot />
     </Content>
@@ -11,14 +11,9 @@ import { Layout } from 'ant-design-vue';
 </template>
 
 <style scoped>
-.layout {
-  min-height: 100vh;
-}
-
 .container {
   width: 100%;
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 1rem;
 }
 </style>
