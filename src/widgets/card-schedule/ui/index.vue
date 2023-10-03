@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { ScheduleApi, ScheduleType } from '@/shared/api';
 import { ScheduleCard } from '@/features/schedule-card';
 import { ScheduleDayTitle } from '@/features/schedule-day-title';
-import { useThemeStore } from '@/entities/theme';
-import { storeToRefs } from 'pinia';
+import { ScheduleApi, ScheduleType } from '@/shared/api';
+import { ref } from 'vue';
 const schedules = ref<ScheduleType[]>();
-
-const store = useThemeStore();
-
-const { themeStatus } = storeToRefs(store);
 
 async function fetch() {
   const schedulesRes = await ScheduleApi.getSchedule();

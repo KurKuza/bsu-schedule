@@ -3,7 +3,6 @@ import { ScheduleType } from '@/shared/api';
 import { pick } from 'radash';
 import { PropType } from 'vue';
 import Tags from './tags.vue';
-
 const props = defineProps({
   schedule: {
     type: Object as PropType<ScheduleType>,
