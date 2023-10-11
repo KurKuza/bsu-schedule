@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { ScheduleType } from '@/shared/api';
 import { PropType } from 'vue';
 import Sidebar from './sidebar.vue';
 
+import { ScheduleWithDayType } from '@/entities/schedule';
 import Content from './content.vue';
+
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleType>,
+    type: Object as PropType<ScheduleWithDayType>,
     required: true,
   },
 });

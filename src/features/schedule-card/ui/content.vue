@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ScheduleType } from '@/shared/api';
+import { ScheduleWithDayType } from '@/entities/schedule';
 import { pick } from 'radash';
 import { PropType } from 'vue';
 import Tags from './tags.vue';
+
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleType>,
+    type: Object as PropType<ScheduleWithDayType>,
     required: true,
   },
 });

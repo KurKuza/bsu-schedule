@@ -6,10 +6,12 @@ import ThemeProvider from './providers/theme.vue';
 </script>
 
 <template>
-  <ThemeProvider>
-    <Container>
-      <Header />
-      <CardSchedule />
-    </Container>
-  </ThemeProvider>
+  <Suspense>
+    <ThemeProvider>
+      <Container>
+        <Header />
+        <CardSchedule />
+      </Container>
+    </ThemeProvider>
+  </Suspense>
 </template>
