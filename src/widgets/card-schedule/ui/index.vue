@@ -48,9 +48,9 @@ onMounted(async () => {
 <template>
   <div class="schedule-container">
     <template v-for="(schedule, index) in schedules">
-      <ScheduleDayTitle v-if="schedule?.day" :dayTitle="schedule.day" />
+      <ScheduleDayTitle v-if="'day' in schedule" :dayTitle="schedule.day" />
       <template v-else>
-        <ScheduleCard v-if="schedule?.pairnumber" :key="index" :schedule="schedule" />
+        <ScheduleCard v-if="'pairnumber' in schedule" :key="index" :schedule="schedule" />
       </template>
     </template>
   </div>
