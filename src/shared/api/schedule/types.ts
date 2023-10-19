@@ -3,12 +3,13 @@ export interface ScheduleType {
   timestart: number;
   timeend: number;
   edworkkind: string;
-  subgroup?: string;
   dis: string;
-  room?: Room;
   online: boolean;
   withdist: boolean;
+  subgroup?: string;
+  room?: Room;
   teacher?: Teacher;
+  dayofweek?: string;
   links?: Link[];
 }
 

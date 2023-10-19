@@ -14,65 +14,52 @@ async function fetchSchedules() {
   return res.data;
 }
 
-function addDaysToSchedules(schedules: ScheduleType[] | undefined) {
-  if (!schedules) return [];
+function addDaysToSchedule(schedules: ScheduleType[]): ScheduleWithDayType[] {
+  let schedulesWithDays: ScheduleWithDayType[] = [];
+  let lastDay = '';
 
-  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const schedulesWithDaysAndDays: ScheduleWithDayType[] = schedules;
-  schedulesWithDaysAndDays.unshift({ day: days[0] });
+  for (let i = 0; i < schedules.length; i++) {
+    const element = schedules[i];
+    const day = getDayOfWeek(new Date(element.timestart * 1000));
 
-  let lastPair = 1;
-  let dayIndex = 0;
-  for (let i = 0, len = schedules.length; i < len; i++) {
-    const { pairnumber } = schedules[i];
-
-    console.log('🚀  pairnumber < lastPair:', pairnumber, lastPair);
-    if (pairnumber > lastPair) {
-      lastPair = pairnumber;
-    }
-
-    if (pairnumber < lastPair) {
-      dayIndex++;
-      console.log('🚀  dayIndex:', dayIndex);
-      schedulesWithDaysAndDays.splice(i, 0, { day: days[dayIndex] });
-      lastPair = 1;
+    if (day !== lastDay) {
+      schedulesWithDays.splice(i, 0, { day });
+      lastDay = day;
+    } else {
+      schedulesWithDays.push(element);
     }
   }
 
-  return schedulesWithDaysAndDays;
+  console.log('🚀  schedulesWithDays:', schedulesWithDays);
+  return schedulesWithDays;
 }
 
-// const getSchedulesWithDays = async () => {
-//   const res = await fetchSchedules();
-//   console.log('🚀  res:', res);
-//   loading.value = false;
-//   schedules.value = res;
+function getDayOfWeek(date: Date): string {
+  return date.toLocaleString('ru-RU', { weekday: 'long' });
+}
 
-//   console.log('🚀  addDaysToSchedules(res):', addDaysToSchedules(res));
-// };
-
-// const sheduleFromPromise = ref<any>([]);
+console.log('🚀  schedules:', addDaysToSchedule(await fetchSchedules())[0]);
 
 onMounted(async () => {
-  console.log(
-    '🚀  addDaysToSchedules(await fetchSchedules()):',
-    addDaysToSchedules(await fetchSchedules()),
-  );
-  schedules.value = addDaysToSchedules(await fetchSchedules());
+  schedules.value = addDaysToSchedule(await fetchSchedules());
 });
 </script>
 
 <template>
   <div class="schedule-container">
-    <ScheduleDayTitle />
-    <ScheduleCard v-for="(item, index) in schedules" :key="index" :schedule="item" />
+    <template v-for="(schedule, index) in schedules">
+      <ScheduleDayTitle v-if="schedule?.day" :dayTitle="schedule.day" />
+      <template v-else>
+        <ScheduleCard v-if="schedule?.pairnumber" :key="index" :schedule="schedule" />
+      </template>
+    </template>
   </div>
 </template>
 
 <style scoped lang="scss">
 .schedule-container {
   border-radius: 1rem;
-  padding: 1rem;
+  padding: 0.8rem;
   background-color: #fff;
 }
 

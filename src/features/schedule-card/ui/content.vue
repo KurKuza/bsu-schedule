@@ -12,7 +12,7 @@ const props = defineProps({
 });
 
 const stringTransform = (str: string) => {
-  return str.length > 34 ? str.slice(0, 35).trim() + '..' : str;
+  return str?.length > 34 ? str.slice(0, 35).trim() + '..' : str;
 };
 </script>
 
@@ -31,6 +31,7 @@ const stringTransform = (str: string) => {
 
 <style scoped>
 .title {
+  text-wrap: balance;
   margin: 0;
 }
 .paragraph {

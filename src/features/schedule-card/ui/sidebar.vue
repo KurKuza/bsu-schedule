@@ -37,6 +37,7 @@ function convertMsToLocalTime(ms: number) {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  text-wrap: nowrap;
 }
 
 .pyrography {
