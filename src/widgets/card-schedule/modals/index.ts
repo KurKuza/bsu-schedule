@@ -1,46 +1,33 @@
-// import { ScheduleApi, ScheduleType } from '@/shared/api';
-// import { ref } from 'vue';
+import { ScheduleType, ScheduleWithDayType } from '@/entities/schedule';
+import { ScheduleApi } from '@/shared/api';
 
-// import { ScheduleType } from '@/shared/api';
+async function fetchSchedules() {
+  const res = await ScheduleApi.getSchedule();
 
-// export type ScheduleWithDayType = ScheduleType | { day: string };
+  return res.data;
+}
 
-// const loading = ref(false);
-// const schedules = ref<(ScheduleType | { day: string })[]>();
+function addDaysToSchedule(schedules: ScheduleType[]): ScheduleWithDayType[] {
+  let schedulesWithDays: ScheduleWithDayType[] = [];
+  let lastDay = '';
 
-// async function fetchSchedules() {
-//   loading.value = true;
-//   const res = await ScheduleApi.getSchedule();
-//   return res.data;
-// }
+  for (let i = 0; i < schedules.length; i++) {
+    const element = schedules[i];
+    const day = getDayOfWeek(new Date(element.timestart * 1000));
 
-// function convertSchedulesWithDays(schedules: ScheduleType[] | undefined) {
-//   if (!schedules) return [];
+    if (day === lastDay) {
+      schedulesWithDays.push(element);
+    } else {
+      schedulesWithDays.splice(i, 0, { day });
+      lastDay = day;
+    }
+  }
 
-//   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-//   const schedulesWithDays: (ScheduleType | { day: string })[] = [];
+  return schedulesWithDays;
+}
 
-//   let currentPair = 0;
-//   for (let i = 0, len = schedules.length; i < len; i++) {
-//     const schedule = schedules[i];
+function getDayOfWeek(date: Date): string {
+  return date.toLocaleString('ru-RU', { weekday: 'long' });
+}
 
-//     if (schedule.pairnumber < currentPair) {
-//       schedulesWithDays.splice(i, 0, { day: days[i] });
-//     }
-//   }
-
-//   return schedulesWithDays;
-// }
-
-// const getSchedulesWithDays = async () => {
-//   const res = await fetchSchedules();
-//   console.log('🚀  res:', res);
-//   loading.value = false;
-
-//   console.log('🚀  convertSchedulesWithDays(res):', convertSchedulesWithDays(res));
-//   return convertSchedulesWithDays(res);
-// };
-
-// console.log('🚀  schedules:', schedules);
-
-// export { getSchedulesWithDays, loading };
+export { fetchSchedules, addDaysToSchedule };
