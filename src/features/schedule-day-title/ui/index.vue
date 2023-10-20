@@ -17,10 +17,13 @@ const dayTitle = props.dayTitle;
 .title {
   text-transform: capitalize !important;
   margin: 0;
-  margin-top: 0.6rem;
   margin-bottom: 0.3rem;
 
   font-size: 1.3rem;
   font-weight: 700;
+}
+
+.title:not(:first-child) {
+  margin-top: 0.6rem;
 }
 </style>

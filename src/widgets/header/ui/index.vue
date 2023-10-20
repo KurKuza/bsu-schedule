@@ -2,14 +2,19 @@
 import { ref } from 'vue';
 import { OnClickOutside } from '@vueuse/components';
 import { useThemeStore } from '@/entities/theme';
-
-const { toggleTheme } = useThemeStore();
+import { useTheme } from 'vuetify';
 
 const isSearch = ref(false);
 
 const handleSearch = () => {
   isSearch.value = !isSearch.value;
 };
+
+const theme = useTheme();
+
+function toggleTheme() {
+  theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+}
 </script>
 
 <template>
