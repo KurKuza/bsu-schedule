@@ -10,21 +10,21 @@
     "ionic:serve": "npm run dev"
   },
   "dependencies": {
-    "@ant-design/icons-vue": "^7.0.0",
     "@capacitor/android": "5.4.1",
     "@capacitor/app": "^5.0.6",
     "@capacitor/cli": "^5.4.1",
     "@capacitor/core": "^5.4.1",
     "@capacitor/ios": "5.4.1",
     "@vueuse/components": "^10.4.1",
-    "ant-design-vue": "^4.0.3",
     "axios": "^1.5.1",
     "core-js": "^3.8.3",
     "pinia": "^2.1.6",
     "radash": "^11.0.0",
-    "vue": "^3.2.13"
+    "vue": "^3.2.13",
+    "vuetify": "^3.3.22"
   },
   "devDependencies": {
+    "@mdi/font": "^7.3.67",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "@vitejs/plugin-vue": "^4.2.3",

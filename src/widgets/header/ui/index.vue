@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { SearchOutlined, StarOutlined, SettingOutlined } from '@ant-design/icons-vue';
-import { Button } from 'ant-design-vue';
 import { ref } from 'vue';
 import { OnClickOutside } from '@vueuse/components';
 import { useThemeStore } from '@/entities/theme';
@@ -16,31 +14,35 @@ const handleSearch = () => {
 
 <template>
   <div class="header">
-    <a-typography-title class="title" :level="4">Расписание</a-typography-title>
-    <button @click="toggleTheme">Toggle Theme</button>
+    <v-card-title class="pa-0">Расписание</v-card-title>
+    <v-btn @click="toggleTheme">Toggle Theme</v-btn>
 
     <div class="icons">
       <div class="search-container">
-        <Button v-if="!isSearch" @click="handleSearch" shape="circle">
-          <SearchOutlined class="icon" />
-        </Button>
+        <v-btn icon size="small" v-if="!isSearch" @click="handleSearch">
+          <v-icon icon="mdi-magnify" size="large"
+        /></v-btn>
 
-        <OnClickOutside v-else @trigger="handleSearch">
-          <a-input-search
-            bordered="false"
-            ref="isSearch"
-            class="search"
-            placeholder="input search text"
-            style="width: 200px"
-          />
-        </OnClickOutside>
+        <!-- <OnClickOutside v-else @trigger="handleSearch">
+
+        </OnClickOutside> -->
+        <v-autocomplete
+          solo
+          flat
+          no-filter
+          dense
+          hide-details
+          variant="outlined"
+          ref="isSearch"
+          class="search"
+          placeholder="Search"
+          prepend-inner-icon="mdi-magnify"
+          :append-icon="''"
+        />
       </div>
-      <Button shape="circle">
-        <StarOutlined class="icon" />
-      </Button>
-      <Button shape="circle">
-        <SettingOutlined class="icon" />
-      </Button>
+
+      <v-btn icon size="small"><v-icon icon="mdi-star-outline" size="large" /></v-btn>
+      <v-btn icon size="small"><v-icon icon="mdi-dots-vertical" size="large" /></v-btn>
     </div>
   </div>
 </template>
@@ -54,7 +56,8 @@ const handleSearch = () => {
 }
 
 .search {
-  width: 100% !important;
+  width: 200px;
+  padding: 0.2rem !important;
 }
 
 .icons {

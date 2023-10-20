@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import App from './app/App.vue';
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/reset.css';
-import { createPinia } from 'pinia';
 
-createApp(App).use(Antd).use(createPinia()).mount('#app');
+import { pinia } from './shared/lib/pinia';
+import { vuetify } from './shared/lib/vuetify';
+
+createApp(App).use(vuetify).use(pinia).mount('#app');
