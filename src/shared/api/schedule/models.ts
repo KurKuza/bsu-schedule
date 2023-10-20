@@ -1,7 +1,7 @@
 // https://beluni.ru/schedule/g/12002331?from=2023-09-25&to=2023-10-01&qdist=1
 
+import { ScheduleType } from '@/entities/schedule';
 import { apiInstance } from '../lib/axios';
-import { ScheduleType } from './types';
 
 export const ScheduleApi = {
   getSchedule: () => {

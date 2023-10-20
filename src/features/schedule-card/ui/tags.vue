@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ScheduleType } from '@/shared/api';
+import { ScheduleType } from '@/entities/schedule';
 import { PropType } from 'vue';
 
 const props = defineProps({
@@ -15,13 +15,39 @@ const subgroupTransform = (str: string) => {
 </script>
 
 <template>
-  <a-space size="small">
-    <a-tag :bordered="false" color="purple">{{ props.tags.edworkkind }}</a-tag>
-    <a-tag v-if="props.tags.subgroup" :bordered="false" color="green">
+  <v-space class="tags" size="small">
+    <v-chip class="chip" size="x-small" variant="tonal" :bordered="false" color="purple">
+      {{ props.tags.edworkkind }}
+    </v-chip>
+    <v-chip
+      class="chip"
+      size="x-small"
+      variant="tonal"
+      v-if="props.tags.subgroup"
+      :bordered="false"
+      color="green"
+    >
       {{ subgroupTransform(props.tags.subgroup) }}
-    </a-tag>
-    <a-tag v-if="props.tags.online" :bordered="false" color="blue">{{ 'с возм. онлайн' }}</a-tag>
-  </a-space>
+    </v-chip>
+    <v-chip
+      class="chip"
+      size="x-small"
+      variant="tonal"
+      v-if="props.tags.online"
+      :bordered="false"
+      color="blue"
+      >{{ 'с возм. онлайн' }}</v-chip
+    >
+  </v-space>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.tags {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.chip {
+  font-weight: 500;
+}
+</style>

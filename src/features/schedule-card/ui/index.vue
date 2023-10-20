@@ -2,25 +2,24 @@
 import { PropType } from 'vue';
 import Sidebar from './sidebar.vue';
 
-import { ScheduleWithDayType } from '@/entities/schedule';
+import { ScheduleType } from '@/entities/schedule';
 import Content from './content.vue';
 
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleWithDayType>,
+    type: Object as PropType<ScheduleType>,
     required: true,
   },
 });
 </script>
 
 <template>
-  <a-layout class="container" direction="horizontal">
+  <v-layout class="container" direction="horizontal">
     <Sidebar :schedule="props.schedule" />
-    <a-divider class="divider" orientation="center" type="vertical" />
-    <a-layout-content direction="vertical">
+    <v-layout-content direction="vertical">
       <Content :schedule="props.schedule" />
-    </a-layout-content>
-  </a-layout>
+    </v-layout-content>
+  </v-layout>
 </template>
 
 <style scoped lang="scss">
@@ -28,7 +27,7 @@ const props = defineProps({
   display: flex;
   flex-direction: row;
   gap: 0.5rem;
-  padding: 0.3rem 0;
+  padding: 0.4rem 0;
   background-color: inherit;
 }
 .divider {

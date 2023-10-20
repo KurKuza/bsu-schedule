@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ScheduleWithDayType } from '@/entities/schedule';
+import { ScheduleType } from '@/entities/schedule';
 import { PropType } from 'vue';
 
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleWithDayType>,
+    type: Object as PropType<ScheduleType>,
     required: true,
   },
 });
@@ -20,15 +20,13 @@ function convertMsToLocalTime(ms: number) {
 
 <template>
   <div class="sidebar" align="center" directions="vertical">
-    <a-typography-paragraph class="pyrography">
+    <v-card-paragraph class="pyrography">
       {{ convertMsToLocalTime(props.schedule.timestart) }}
-    </a-typography-paragraph>
-    <a-typography-title :level="4" class="title">{{
-      props.schedule.pairnumber
-    }}</a-typography-title>
-    <a-typography-paragraph class="pyrography">
+    </v-card-paragraph>
+    <v-card-title class="title">{{ props.schedule.pairnumber }}</v-card-title>
+    <v-card-paragraph class="pyrography">
       {{ convertMsToLocalTime(props.schedule.timeend) }}
-    </a-typography-paragraph>
+    </v-card-paragraph>
   </div>
 </template>
 

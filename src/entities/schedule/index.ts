@@ -1,3 +1,1 @@
-import { ScheduleType } from '@/shared/api';
-
-export type ScheduleWithDayType = ScheduleType | { day: string };
+export type * from './lib/types';

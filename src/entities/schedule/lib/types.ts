@@ -1,3 +1,5 @@
+export type ScheduleWithDayType = ScheduleType | { day: string };
+
 export interface ScheduleType {
   pairnumber: number;
   timestart: number;

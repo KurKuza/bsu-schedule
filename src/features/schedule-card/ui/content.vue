@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ScheduleWithDayType } from '@/entities/schedule';
+import { ScheduleType } from '@/entities/schedule';
 import { pick } from 'radash';
 import { PropType } from 'vue';
 import Tags from './tags.vue';
 
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleWithDayType>,
+    type: Object as PropType<ScheduleType>,
     required: true,
   },
 });
@@ -17,24 +17,36 @@ const stringTransform = (str: string) => {
 </script>
 
 <template>
-  <Tags :tags="pick(schedule, ['edworkkind', 'subgroup', 'online'])" />
-  <a-typography-title class="title" :level="5">{{
-    stringTransform(props.schedule.dis)
-  }}</a-typography-title>
-  <a-typography-paragraph class="paragraph"
-    >{{ props.schedule.teacher?.name }}
-  </a-typography-paragraph>
-  <a-typography-paragraph v-if="props.schedule.room" class="paragraph"
-    >ауд. {{ props.schedule?.room?.name }} {{ props.schedule?.room?.area }}</a-typography-paragraph
-  >
+  <div class="content-container">
+    <Tags :tags="pick(schedule, ['edworkkind', 'subgroup', 'online'])" />
+    <v-card-title class="title">{{ stringTransform(props.schedule.dis) }}</v-card-title>
+    <v-card-paragraph class="paragraph">{{ props.schedule.teacher?.name }} </v-card-paragraph>
+    <v-card-paragraph v-if="props.schedule.room" class="paragraph"
+      >ауд. {{ props.schedule?.room?.name }} {{ props.schedule?.room?.area }}</v-card-paragraph
+    >
+  </div>
 </template>
 
 <style scoped>
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
 .title {
   text-wrap: balance;
+  /* padding: 3px 0 6px 0 !important; */
+  padding: 0 !important;
   margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
 }
 .paragraph {
   margin: 0;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 </style>
