@@ -45,7 +45,7 @@ const handleSearch = () => {
       </div>
     </v-main>
 
-    <Drawer v-model="drawer" />
+    <Drawer v-model="drawer" temporary />
   </v-layout>
 </template>
 
