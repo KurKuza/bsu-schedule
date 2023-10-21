@@ -13,5 +13,10 @@ export const vuetify = createVuetify({
   },
   theme: {
     defaultTheme: 'dark',
+    variations: {
+      colors: ['primary', 'secondary'],
+      lighten: 1,
+      darken: 2,
+    },
   },
 });

@@ -15,7 +15,7 @@ const subgroupTransform = (str: string) => {
 </script>
 
 <template>
-  <v-space class="tags" size="small">
+  <div class="tags" size="small">
     <v-chip class="chip" size="x-small" variant="tonal" :bordered="false" color="purple">
       {{ props.tags.edworkkind }}
     </v-chip>
@@ -38,7 +38,7 @@ const subgroupTransform = (str: string) => {
       color="blue"
       >{{ 'с возм. онлайн' }}</v-chip
     >
-  </v-space>
+  </div>
 </template>
 
 <style scoped lang="scss">

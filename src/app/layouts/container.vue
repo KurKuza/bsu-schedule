@@ -1,11 +1,9 @@
-<script setup lang="ts">
-import { Content } from 'ant-design-vue/es/layout/layout';
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <Content class="container">
+  <div class="container">
     <slot />
-  </Content>
+  </div>
 </template>
 
 <style scoped>

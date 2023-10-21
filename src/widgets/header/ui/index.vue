@@ -28,22 +28,22 @@ function toggleTheme() {
           <v-icon icon="mdi-magnify" size="large"
         /></v-btn>
 
-        <!-- <OnClickOutside v-else @trigger="handleSearch">
-
-        </OnClickOutside> -->
-        <v-autocomplete
-          solo
-          flat
-          no-filter
-          dense
-          hide-details
-          variant="outlined"
-          ref="isSearch"
-          class="search"
-          placeholder="Search"
-          prepend-inner-icon="mdi-magnify"
-          :append-icon="''"
-        />
+        <OnClickOutside v-else @trigger="handleSearch">
+          <v-autocomplete
+            solo
+            flat
+            no-filter
+            dense
+            hide-details
+            variant="outlined"
+            ref="isSearch"
+            class="search"
+            placeholder="Search"
+            prepend-inner-icon="mdi-magnify"
+            :append-icon="''"
+            density="compact"
+          />
+        </OnClickOutside>
       </div>
 
       <v-btn icon size="small"><v-icon icon="mdi-star-outline" size="large" /></v-btn>
@@ -62,7 +62,8 @@ function toggleTheme() {
 
 .search {
   width: 200px;
-  padding: 0.2rem !important;
+  padding: 0 !important;
+  height: 40px !important;
 }
 
 .icons {
