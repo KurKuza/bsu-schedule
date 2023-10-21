@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { OnClickOutside } from '@vueuse/components';
-import { useThemeStore } from '@/entities/theme';
 import { useTheme } from 'vuetify';
 
 const isSearch = ref(false);
+const drawer = ref(false);
 
 const handleSearch = () => {
   isSearch.value = !isSearch.value;
@@ -18,38 +18,48 @@ function toggleTheme() {
 </script>
 
 <template>
-  <div class="header">
-    <v-card-title class="pa-0">Расписание</v-card-title>
-    <v-btn @click="toggleTheme">Toggle Theme</v-btn>
+  <v-layout>
+    <v-main>
+      <div class="header">
+        <v-card-title class="pa-0">Расписание</v-card-title>
 
-    <div class="icons">
-      <div class="search-container">
-        <v-btn icon size="small" v-if="!isSearch" @click="handleSearch">
-          <v-icon icon="mdi-magnify" size="large"
-        /></v-btn>
+        <div class="icons">
+          <div class="search-container">
+            <v-btn icon size="small" v-if="!isSearch" @click="handleSearch">
+              <v-icon icon="mdi-magnify" size="large"
+            /></v-btn>
 
-        <OnClickOutside v-else @trigger="handleSearch">
-          <v-autocomplete
-            solo
-            flat
-            no-filter
-            dense
-            hide-details
-            variant="outlined"
-            ref="isSearch"
-            class="search"
-            placeholder="Search"
-            prepend-inner-icon="mdi-magnify"
-            :append-icon="''"
-            density="compact"
-          />
-        </OnClickOutside>
+            <OnClickOutside v-else @trigger="handleSearch">
+              <v-autocomplete
+                solo
+                flat
+                no-filter
+                dense
+                hide-details
+                variant="outlined"
+                ref="isSearch"
+                class="search"
+                placeholder="Search"
+                prepend-inner-icon="mdi-magnify"
+                :append-icon="''"
+                density="compact"
+              />
+            </OnClickOutside>
+          </div>
+
+          <v-btn icon size="small"><v-icon icon="mdi-star-outline" size="large" /></v-btn>
+          <v-btn @click.stop="drawer = !drawer" icon size="small"
+            ><v-icon icon="mdi-dots-vertical" size="large"
+          /></v-btn>
+        </div>
       </div>
-
-      <v-btn icon size="small"><v-icon icon="mdi-star-outline" size="large" /></v-btn>
-      <v-btn icon size="small"><v-icon icon="mdi-dots-vertical" size="large" /></v-btn>
-    </div>
-  </div>
+    </v-main>
+    <v-navigation-drawer v-model="drawer" location="right">
+      <div class="drawer">
+        <v-btn @click="toggleTheme">Toggle Theme</v-btn>
+      </div>
+    </v-navigation-drawer>
+  </v-layout>
 </template>
 
 <style scoped>
@@ -59,7 +69,9 @@ function toggleTheme() {
   justify-content: space-between;
   padding: 12px 16px;
 }
-
+.drawer {
+  padding: 1rem;
+}
 .search {
   width: 200px;
   padding: 0 !important;
