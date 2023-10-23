@@ -1,6 +1,6 @@
-export type ScheduleWithDayType = ScheduleType | { day: string };
+export type Schedule = Pair | { day: string } | DividedPair;
 
-export interface ScheduleType {
+export type Pair = {
   pairnumber: number;
   timestart: number;
   timeend: number;
@@ -13,7 +13,12 @@ export interface ScheduleType {
   teacher?: Teacher;
   dayofweek?: string;
   links?: Link[];
-}
+};
+
+export type DividedPair = {
+  firstPair: Pair;
+  secondPair: Pair;
+};
 
 export interface Room {
   id: number;

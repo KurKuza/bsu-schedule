@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ScheduleType } from '@/entities/schedule';
+import { Pair } from '@/entities/schedule';
 import { pick } from 'radash';
 import { PropType } from 'vue';
 import Tags from './tags.vue';
 
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleType>,
+    type: Object as PropType<Pair>,
     required: true,
   },
 });
@@ -20,10 +20,10 @@ const stringTransform = (str: string) => {
   <div class="content-container">
     <Tags :tags="pick(schedule, ['edworkkind', 'subgroup', 'online'])" />
     <v-card-title class="title">{{ stringTransform(props.schedule.dis) }}</v-card-title>
-    <v-card-paragraph class="paragraph">{{ props.schedule.teacher?.name }} </v-card-paragraph>
-    <v-card-paragraph v-if="props.schedule.room" class="paragraph"
-      >ауд. {{ props.schedule?.room?.name }} {{ props.schedule?.room?.area }}</v-card-paragraph
-    >
+    <p class="paragraph">{{ props.schedule.teacher?.name }}</p>
+    <p v-if="props.schedule.room" class="paragraph">
+      ауд. {{ props.schedule?.room?.name }} {{ props.schedule?.room?.area }}
+    </p>
   </div>
 </template>
 

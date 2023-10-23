@@ -2,12 +2,12 @@
 import { PropType } from 'vue';
 import Sidebar from './sidebar.vue';
 
-import { ScheduleType } from '@/entities/schedule';
+import { Pair } from '@/entities/schedule';
 import Content from './content.vue';
 
 const props = defineProps({
   schedule: {
-    type: Object as PropType<ScheduleType>,
+    type: Object as PropType<Pair>,
     required: true,
   },
 });
@@ -16,9 +16,9 @@ const props = defineProps({
 <template>
   <v-layout class="container" direction="horizontal">
     <Sidebar :schedule="props.schedule" />
-    <v-layout-content direction="vertical">
+    <div>
       <Content :schedule="props.schedule" />
-    </v-layout-content>
+    </div>
   </v-layout>
 </template>
 

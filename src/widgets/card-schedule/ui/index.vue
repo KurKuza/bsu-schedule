@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { ScheduleWithDayType } from '@/entities/schedule';
+import { Schedule } from '@/entities/schedule';
 import { ScheduleCard } from '@/features/schedule-card';
 import { ScheduleDayTitle } from '@/features/schedule-day-title';
 import { onMounted, ref } from 'vue';
-import { addDaysToSchedule, fetchSchedules } from '../modals';
+import { addDaysToSchedule } from '../modals';
+import { fetchSchedules } from '../api';
 
-const schedules = ref<ScheduleWithDayType[]>([]);
+const schedules = ref<Schedule[]>([]);
+
+async function convertedSchedule() {
+  return addDaysToSchedule(await fetchSchedules());
+}
 
 onMounted(async () => {
-  schedules.value = addDaysToSchedule(await fetchSchedules());
+  schedules.value = await convertedSchedule();
+  console.log('🚀  await convertedSchedule():', await convertedSchedule());
 });
 </script>
 
@@ -16,9 +22,7 @@ onMounted(async () => {
   <div class="schedule-container">
     <template v-for="(schedule, index) in schedules">
       <ScheduleDayTitle v-if="'day' in schedule" :dayTitle="schedule.day" />
-      <template v-else>
-        <ScheduleCard v-if="'pairnumber' in schedule" :key="index" :schedule="schedule" />
-      </template>
+      <ScheduleCard v-if="'pairnumber' in schedule" :key="index" :schedule="schedule" />
     </template>
   </div>
 </template>

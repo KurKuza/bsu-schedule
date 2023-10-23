@@ -18,10 +18,6 @@ const handleSearch = () => {
 
         <OnClickOutside v-if="isSearch" @trigger="handleSearch">
           <v-autocomplete
-            solo
-            flat
-            no-filter
-            dense
             hide-details
             variant="outlined"
             ref="isSearch"
@@ -32,6 +28,7 @@ const handleSearch = () => {
             density="compact"
           />
         </OnClickOutside>
+
         <div class="icons">
           <v-btn icon size="small" v-if="!isSearch" @click="handleSearch">
             <v-icon icon="mdi-magnify" size="large"
