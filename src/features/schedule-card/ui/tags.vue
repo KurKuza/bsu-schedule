@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ScheduleType } from '@/entities/schedule';
 import { PropType } from 'vue';
+import { Pair } from '@/entities/schedule';
 
 const props = defineProps({
   tags: {
-    type: Object as PropType<Pick<ScheduleType, 'edworkkind' | 'subgroup' | 'online'>>,
+    type: Object as PropType<Pick<Pair, 'edworkkind' | 'subgroup' | 'online'>>,
     required: true,
   },
 });
@@ -20,20 +20,20 @@ const subgroupTransform = (str: string) => {
       {{ props.tags.edworkkind }}
     </v-chip>
     <v-chip
+      v-if="props.tags.subgroup"
       class="chip"
       size="x-small"
       variant="tonal"
-      v-if="props.tags.subgroup"
       :bordered="false"
       color="green"
     >
       {{ subgroupTransform(props.tags.subgroup) }}
     </v-chip>
     <v-chip
+      v-if="props.tags.online"
       class="chip"
       size="x-small"
       variant="tonal"
-      v-if="props.tags.online"
       :bordered="false"
       color="blue"
       >{{ 'с возм. онлайн' }}</v-chip

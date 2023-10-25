@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { Pair } from '@/entities/schedule';
 import { PropType } from 'vue';
+import { Pair } from '@/entities/schedule';
 
 const props = defineProps({
   schedule: {

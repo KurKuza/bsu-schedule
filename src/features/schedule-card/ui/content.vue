@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { Pair } from '@/entities/schedule';
 import { pick } from 'radash';
 import { PropType } from 'vue';
+import { Pair } from '@/entities/schedule';
 import Tags from './tags.vue';
 
 const props = defineProps({

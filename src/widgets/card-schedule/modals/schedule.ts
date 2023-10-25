@@ -1,7 +1,7 @@
 import { Pair, Schedule } from '@/entities/schedule';
 
 function addDaysToSchedule(schedules: Pair[]): Schedule[] {
-  let schedulesWithDays: Schedule[] = [];
+  const schedulesWithDays: Schedule[] = [];
   let lastDay = '';
 
   for (let i = 0; i < schedules.length; i++) {

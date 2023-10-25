@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { OnClickOutside } from '@vueuse/components';
+import { ref } from 'vue';
 import Drawer from './drawer.vue';
+
 const isSearch = ref(false);
 const drawer = ref(false);
 
@@ -18,9 +19,9 @@ const handleSearch = () => {
 
         <OnClickOutside v-if="isSearch" @trigger="handleSearch">
           <v-autocomplete
+            ref="isSearch"
             hide-details
             variant="outlined"
-            ref="isSearch"
             class="search"
             placeholder="Search"
             prepend-inner-icon="mdi-magnify"
@@ -30,12 +31,12 @@ const handleSearch = () => {
         </OnClickOutside>
 
         <div class="icons">
-          <v-btn icon size="small" v-if="!isSearch" @click="handleSearch">
+          <v-btn v-if="!isSearch" icon size="small" @click="handleSearch">
             <v-icon icon="mdi-magnify" size="large"
           /></v-btn>
 
           <v-btn icon size="small"><v-icon icon="mdi-star-outline" size="large" /></v-btn>
-          <v-btn @click.stop="drawer = !drawer" icon size="small"
+          <v-btn icon size="small" @click.stop="drawer = !drawer"
             ><v-icon icon="mdi-dots-vertical" size="large"
           /></v-btn>
         </div>

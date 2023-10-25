@@ -6,7 +6,7 @@ const props = defineProps({
   },
 });
 
-const dayTitle = props.dayTitle;
+const { dayTitle } = props;
 </script>
 
 <template>

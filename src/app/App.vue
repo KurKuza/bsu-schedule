@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import '../shared/lib/styles/index.scss';
-import Container from './layouts/container.vue';
-import { Header } from '@/widgets/header';
-import { DataPicker } from '@/widgets/data-picker';
+// eslint-disable-next-line no-restricted-imports
+import '@/shared/lib/styles/index.scss';
 import { CardSchedule } from '@/widgets/card-schedule';
+import { Header } from '@/widgets/header';
+import Container from './layouts/container.vue';
 </script>
 
 <template>

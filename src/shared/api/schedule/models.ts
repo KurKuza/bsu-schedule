@@ -4,9 +4,7 @@ import { Pair } from '@/entities/schedule';
 import { apiInstance } from '../lib/axios';
 
 export const ScheduleApi = {
-  getSchedule: () => {
-    return apiInstance.get<Pair[]>('/schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1');
-  },
+  getSchedule: () => apiInstance.get<Pair[]>('/schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1'),
 };
 // Группа 12002302
 // /schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1

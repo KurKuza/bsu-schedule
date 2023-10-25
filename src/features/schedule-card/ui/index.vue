@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { PropType } from 'vue';
-import Sidebar from './sidebar.vue';
-
 import { Pair } from '@/entities/schedule';
 import Content from './content.vue';
+import Sidebar from './sidebar.vue';
 
 const props = defineProps({
   schedule: {
