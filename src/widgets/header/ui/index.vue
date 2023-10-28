@@ -21,12 +21,10 @@ const handleSearch = () => {
           <v-autocomplete
             ref="isSearch"
             hide-details
-            variant="outlined"
+            variant="solo"
             class="search"
             placeholder="Search"
             prepend-inner-icon="mdi-magnify"
-            :append-icon="''"
-            density="compact"
           />
         </OnClickOutside>
 
@@ -53,10 +51,19 @@ const handleSearch = () => {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+  position: relative;
 }
 .search {
-  height: 40px !important;
-  width: 300px;
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  z-index: 10;
+  width: 100vw;
+  max-width: 800px;
+
+  background-color: rgb(var(--v-theme-surface));
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
 .icons {

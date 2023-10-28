@@ -30,6 +30,7 @@ onMounted(async () => {
 .schedule-container {
   border-radius: 1rem;
   padding: 0.8rem;
+  margin-top: 0.5rem;
   background-color: rgb(var(--v-theme-surface));
 }
 </style>
