@@ -1,7 +1,7 @@
-import { ScheduleApi } from '@/shared/api';
+import { scheduleApi } from '@/shared/api';
 
 async function fetchSchedules() {
-  const res = await ScheduleApi.getSchedule();
+  const res = await scheduleApi.getSchedule();
 
   return res.data;
 }

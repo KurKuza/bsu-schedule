@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { handleSearch } from '@/entities/search/schedule';
 import { OnClickOutside } from '@vueuse/components';
 import { ref } from 'vue';
 import Drawer from './drawer.vue';
+import { handleSearch } from '../modals';
 
 const isSearch = ref(false);
 const drawer = ref(false);

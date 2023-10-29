@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://beluni.ru';
+export const BASE_URL = '/api/';

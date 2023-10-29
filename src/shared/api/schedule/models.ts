@@ -3,8 +3,21 @@
 import { Pair } from '@/entities/schedule';
 import { apiInstance } from '../lib/axios';
 
-export const ScheduleApi = {
-  getSchedule: () => apiInstance.get<Pair[]>('/schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1'),
-};
 // Группа 12002302
 // /schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1
+export const scheduleApi = {
+  getSchedule: () =>
+    apiInstance.get<Pair[]>('/schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1', {
+      id: 'schedule',
+    }),
+};
+
+export const searchApi = {
+  search: async (query: string) => {
+    console.log(
+      '🚀  apiInstance.get(`/schedule/search?q=${query}`):',
+      await apiInstance.get(`/schedule/search?q=${query}`),
+    );
+    return apiInstance.get(`/schedule/search?q=${query}`);
+  },
+};
