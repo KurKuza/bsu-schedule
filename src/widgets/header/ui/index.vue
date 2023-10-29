@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { handleSearch } from '@/entities/search/schedule';
 import { OnClickOutside } from '@vueuse/components';
 import { ref } from 'vue';
 import Drawer from './drawer.vue';
@@ -6,7 +7,7 @@ import Drawer from './drawer.vue';
 const isSearch = ref(false);
 const drawer = ref(false);
 
-const handleSearch = () => {
+const handleClickSearch = () => {
   isSearch.value = !isSearch.value;
 };
 </script>
@@ -17,19 +18,19 @@ const handleSearch = () => {
       <div class="header">
         <v-card-title class="pa-0">Расписание</v-card-title>
 
-        <OnClickOutside v-if="isSearch" @trigger="handleSearch">
+        <OnClickOutside v-if="isSearch" @trigger="handleClickSearch">
           <v-autocomplete
-            ref="isSearch"
             hide-details
             variant="solo"
             class="search"
             placeholder="Search"
             prepend-inner-icon="mdi-magnify"
+            @input="handleSearch"
           />
         </OnClickOutside>
 
         <div class="icons">
-          <v-btn v-if="!isSearch" icon size="small" @click="handleSearch">
+          <v-btn v-if="!isSearch" icon size="small" @click="handleClickSearch">
             <v-icon icon="mdi-magnify" size="large"
           /></v-btn>
 

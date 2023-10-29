@@ -47,7 +47,7 @@ module.exports = {
           {
             group: [
               '@/shared/*/*/**',
-              '@/entities/*/**',
+              '@/entities/*/*/**',
               '@/features/*/**',
               '@/widgets/*/**',
               '@/pages/*/**',

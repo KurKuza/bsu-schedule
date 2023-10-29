@@ -1,1 +1,1 @@
-export { useThemeStore } from './models';
+export { handleToggleTheme } from './modals';
