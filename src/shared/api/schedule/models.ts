@@ -2,6 +2,7 @@
 
 import { Pair } from '@/entities/schedule';
 import { apiInstance } from '../lib/axios';
+import { SearchResponse } from '@/entities/search';
 
 // Группа 12002302
 // /schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1
@@ -16,8 +17,9 @@ export const searchApi = {
   search: async (query: string) => {
     console.log(
       '🚀  apiInstance.get(`/schedule/search?q=${query}`):',
-      await apiInstance.get(`/schedule/search?q=${query}`),
+      await apiInstance.get<SearchResponse[]>(`/schedule/search?q=${query}`),
     );
-    return apiInstance.get(`/schedule/search?q=${query}`);
+    return apiInstance.get<SearchResponse[]>(`/schedule/search?q=${query}`);
   },
 };
+// v-autocomplete__content

@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { OnClickOutside } from '@vueuse/components';
 import { ref } from 'vue';
+import { useSearchStore } from '../modals';
 import Drawer from './drawer.vue';
-import { handleSearch } from '../modals';
+import { storeToRefs } from 'pinia';
+
+const store = useSearchStore();
+const { searchSupply } = storeToRefs(store);
 
 const isSearch = ref(false);
 const drawer = ref(false);
@@ -21,11 +25,12 @@ const handleClickSearch = () => {
         <OnClickOutside v-if="isSearch" @trigger="handleClickSearch">
           <v-autocomplete
             hide-details
+            :items="searchSupply"
             variant="solo"
             class="search"
             placeholder="Search"
             prepend-inner-icon="mdi-magnify"
-            @input="handleSearch"
+            @input="store.handleSearch"
           />
         </OnClickOutside>
 
