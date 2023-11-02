@@ -1,5 +1,7 @@
 export interface SearchResponse {
   id: string;
   name: string;
-  type: 'g' | 't' | 'a';
+  type: SearchResponseType;
 }
+
+export type SearchResponseType = 'g' | 't' | 'a';

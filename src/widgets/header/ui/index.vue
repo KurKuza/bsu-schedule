@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { OnClickOutside } from '@vueuse/components';
 import { ref } from 'vue';
-import { useSearchStore } from '../modals';
 import Drawer from './drawer.vue';
 import { storeToRefs } from 'pinia';
+import { VueInputEvent } from '@/shared/lib/types';
+import { useSearchStore } from '@/entities/schedule';
 
 const store = useSearchStore();
 const { searchSupply } = storeToRefs(store);
+console.log('🚀  desired:', searchSupply.value);
 
 const isSearch = ref(false);
 const drawer = ref(false);
@@ -14,6 +16,12 @@ const drawer = ref(false);
 const handleClickSearch = () => {
   isSearch.value = !isSearch.value;
 };
+
+function saveSelected(val: VueInputEvent) {
+  const res = val?.target?.value?.trim();
+  console.log('🚀  res:', res);
+  store.handleSaveInputSearch(res);
+}
 </script>
 
 <template>
@@ -22,17 +30,19 @@ const handleClickSearch = () => {
       <div class="header">
         <v-card-title class="pa-0">Расписание</v-card-title>
 
-        <OnClickOutside v-if="isSearch" @trigger="handleClickSearch">
-          <v-autocomplete
-            hide-details
-            :items="searchSupply"
-            variant="solo"
-            class="search"
-            placeholder="Search"
-            prepend-inner-icon="mdi-magnify"
-            @input="store.handleSearch"
-          />
-        </OnClickOutside>
+        <!-- <OnClickOutside v-if="isSearch" @trigger="handleClickSearch"> -->
+        <!-- v-model:search-input="store.search" -->
+        <v-autocomplete
+          hide-details
+          :items="searchSupply"
+          variant="solo"
+          class="search"
+          placeholder="Search"
+          prepend-inner-icon="mdi-magnify"
+          @blur="saveSelected"
+          @input="store.handleSearchSupply"
+        />
+        <!-- </OnClickOutside> -->
 
         <div class="icons">
           <v-btn v-if="!isSearch" icon size="small" @click="handleClickSearch">

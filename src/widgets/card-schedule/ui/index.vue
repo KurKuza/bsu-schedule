@@ -1,18 +1,21 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { Schedule, useSearchStore } from '@/entities/schedule';
 import { ScheduleCard } from '@/features/schedule-card';
 import { ScheduleDayTitle } from '@/features/schedule-day-title';
-import { Schedule } from '@/entities/schedule';
-import { fetchSchedules } from '../api';
+import { ref, watch } from 'vue';
 import { addDaysToSchedule } from '../modals';
 
 const schedules = ref<Schedule[]>();
 
+const store = useSearchStore();
+
 async function convertedSchedule() {
-  return addDaysToSchedule(await fetchSchedules());
+  const finalSchedule = addDaysToSchedule((await store.getDesiredSchedule()).data);
+  console.log('🚀  finalSchedule:', finalSchedule);
+  return finalSchedule;
 }
 
-onMounted(async () => {
+watch(store.getDesiredSchedule, async () => {
   schedules.value = await convertedSchedule();
 });
 </script>
