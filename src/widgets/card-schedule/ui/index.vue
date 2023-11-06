@@ -15,6 +15,9 @@ async function convertedSchedule() {
   return finalSchedule;
 }
 
+const date = new Date().toLocaleDateString('sv');
+console.log('🚀  date:', date);
+
 watch(store.getDesiredSchedule, async () => {
   schedules.value = await convertedSchedule();
 });
@@ -33,7 +36,6 @@ watch(store.getDesiredSchedule, async () => {
 .schedule-container {
   border-radius: 1rem;
   padding: 0.8rem;
-  margin-top: 0.5rem;
   background-color: rgb(var(--v-theme-surface));
 }
 </style>

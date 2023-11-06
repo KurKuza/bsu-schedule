@@ -1,9 +1,10 @@
-import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
-import 'vuetify/styles';
+import '@mdi/font/css/materialdesignicons.css';
 import { createVuetify } from 'vuetify';
 import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 import { VDatePicker } from 'vuetify/labs/VDatePicker';
+import { en, ru } from 'vuetify/locale';
+import 'vuetify/styles';
 
 export const vuetify = createVuetify({
   components: {
@@ -20,6 +21,14 @@ export const vuetify = createVuetify({
       colors: ['primary', 'secondary'],
       lighten: 1,
       darken: 2,
+    },
+  },
+  locale: {
+    locale: 'ru',
+    fallback: 'en',
+    messages: {
+      ru,
+      en,
     },
   },
 });

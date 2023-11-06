@@ -3,7 +3,7 @@ import { OnClickOutside } from '@vueuse/components';
 import { ref } from 'vue';
 import Drawer from './drawer.vue';
 import { storeToRefs } from 'pinia';
-import { VueInputEvent } from '@/shared/lib/types';
+import { VueInputEvent } from '@/shared/types';
 import { useSearchStore } from '@/entities/schedule';
 
 const store = useSearchStore();
@@ -67,6 +67,7 @@ function saveSelected(val: VueInputEvent) {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
+  margin-bottom: 1rem;
   position: relative;
 }
 .search {

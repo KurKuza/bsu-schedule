@@ -1,7 +1,7 @@
 import { SearchResponse } from '@/entities/search';
 import { scheduleApi, searchApi } from '@/shared/api';
 import { PropsGetSchedule } from '@/shared/api/schedule';
-import { VueInputEvent } from '@/shared/lib/types';
+import { VueInputEvent } from '@/shared/types';
 import { defineStore } from 'pinia';
 import { debounce } from 'radash';
 import { ref } from 'vue';
