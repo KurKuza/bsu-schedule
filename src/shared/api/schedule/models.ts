@@ -10,17 +10,23 @@ import { getWeek } from '@/shared/schedule';
 // /schedule/g/12002302?from=2023-10-02&to=2023-10-08&qdist=1
 export const scheduleApi = {
   getSchedule: (
-    val: PropsGetSchedule = {
+    content: Omit<PropsGetSchedule, 'from' | 'to'> = {
       type: 'g',
       name: '12002302',
     },
+    date: Pick<PropsGetSchedule, 'from' | 'to'> = {
+      from: '2023-10-02',
+      to: '2023-10-08',
+    },
   ) => {
-    const week = val.from ? { currentDay: val.from, dayAfter7days: val.to } : getWeek();
+    console.log('🚀  date:', date);
+    console.log('🚀  content:', content);
+    const week = date.from ? { currentDay: date.from, dayAfter7days: date.to } : getWeek();
     console.log('🚀  week:', week);
 
-    console.log('🚀Val  getSchedule:', val);
+    console.log('🚀date  getSchedule:', date);
     const res = apiInstance.get<Pair[]>(
-      `/schedule/${val.type}/${val.name}?from=${week.currentDay}&to=${week.dayAfter7days}&qdist=1`,
+      `/schedule/${content.type}/${content.name}?from=${week.currentDay}&to=${week.dayAfter7days}&qdist=1`,
     );
     console.log('🚀getSchedule  res:', res);
 

@@ -14,9 +14,7 @@ async function convertedSchedule() {
   console.log('🚀  finalSchedule:', finalSchedule);
   return finalSchedule;
 }
-
-const date = new Date().toLocaleDateString('sv');
-console.log('🚀  date:', date);
+schedules.value = await convertedSchedule();
 
 watch(store.getDesiredSchedule, async () => {
   schedules.value = await convertedSchedule();

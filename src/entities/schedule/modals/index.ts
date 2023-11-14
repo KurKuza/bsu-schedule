@@ -1,6 +1,5 @@
 import { SearchResponse } from '@/entities/search';
 import { scheduleApi, searchApi } from '@/shared/api';
-import { PropsGetSchedule } from '@/shared/api/schedule';
 import { VueInputEvent } from '@/shared/types';
 import { defineStore } from 'pinia';
 import { debounce } from 'radash';
@@ -10,7 +9,12 @@ export const useSearchStore = defineStore('search', () => {
   const searchSupply = ref<string[]>([]);
   const desired = ref<string>('');
   const searchBSU = ref<SearchResponse[]>([]);
-  const desiredSchedule = ref<SearchResponse>({ id: '', name: '12002305', type: 'g' });
+  const desiredSchedule = ref<SearchResponse>({ id: '', name: '12002302', type: 'g' });
+
+  const dateRange = ref({
+    from: '',
+    to: '',
+  });
 
   const handleSearch = async (query: string) => {
     const res = (await searchApi.search(query)).data;
@@ -32,9 +36,12 @@ export const useSearchStore = defineStore('search', () => {
   const handleSaveInputSearch = (value: string) => {
     desiredSchedule.value = searchBSU.value.find((item) => item.name === value);
   };
+  const handleDateRange = (value: { from: string; to: string }) => {
+    dateRange.value = value;
+  };
 
   const getDesiredSchedule = () => {
-    return scheduleApi.getSchedule(desiredSchedule.value as PropsGetSchedule);
+    return scheduleApi.getSchedule(desiredSchedule.value, dateRange.value);
   };
 
   return {
@@ -43,6 +50,7 @@ export const useSearchStore = defineStore('search', () => {
     searchSupply,
     handleSearchSupply,
     setSearchedSupply,
+    handleDateRange,
     handleSaveInputSearch,
     getDesiredSchedule,
   };

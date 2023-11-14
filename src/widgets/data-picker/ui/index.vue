@@ -5,6 +5,7 @@ import { ref } from 'vue';
 
 const store = useSearchStore();
 const week = getWeek();
+console.log('🚀  week:', week);
 
 const handleSelectPrevious = () => {
   store.desiredSchedule;
@@ -17,6 +18,14 @@ const getWeekRange = () => {
 
 const isActive = ref(false);
 console.log('🚀  isActive:', isActive.value);
+
+const handleSelectedDate = (event: Date[]) => {
+  const from = event[0].toLocaleDateString('sv');
+  const to = event[1].toLocaleDateString('sv');
+
+  store.handleDateRange({ from, to });
+  isActive.value = false;
+};
 </script>
 
 <template>
@@ -36,7 +45,14 @@ console.log('🚀  isActive:', isActive.value);
 
         <v-dialog v-model="isActive">
           <v-locale-provider>
-            <v-date-picker full-width show-adjacent-months show-current />
+            <v-date-picker
+              :model-value="[week.monday, week.sunday]"
+              multiple
+              range
+              type="week"
+              show-adjacent-months
+              @update:modelValue="handleSelectedDate"
+            />
           </v-locale-provider>
         </v-dialog>
       </v-btn>
