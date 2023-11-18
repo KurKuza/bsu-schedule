@@ -3,6 +3,7 @@ import { scheduleApi, searchApi } from '@/shared/api';
 import { VueInputEvent } from '@/shared/types';
 import { defineStore } from 'pinia';
 import { debounce } from 'radash';
+import { getWeek } from '@/shared/schedule';
 import { ref } from 'vue';
 
 export const useSearchStore = defineStore('search', () => {
@@ -11,9 +12,11 @@ export const useSearchStore = defineStore('search', () => {
   const searchBSU = ref<SearchResponse[]>([]);
   const desiredSchedule = ref<SearchResponse>({ id: '', name: '12002302', type: 'g' });
 
+  const week = getWeek();
+
   const dateRange = ref({
-    from: '',
-    to: '',
+    from: week.monday,
+    to: week.sunday,
   });
 
   const handleSearch = async (query: string) => {
@@ -37,6 +40,7 @@ export const useSearchStore = defineStore('search', () => {
     desiredSchedule.value = searchBSU.value.find((item) => item.name === value);
   };
   const handleDateRange = (value: { from: string; to: string }) => {
+    console.log('🚀  value:', value);
     dateRange.value = value;
   };
 
@@ -46,6 +50,7 @@ export const useSearchStore = defineStore('search', () => {
 
   return {
     desired,
+    dateRange,
     desiredSchedule,
     searchSupply,
     handleSearchSupply,

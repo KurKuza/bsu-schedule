@@ -2,22 +2,32 @@
 import { useSearchStore } from '@/entities/schedule';
 import { getWeek } from '@/shared/schedule';
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { addWeeksToDate } from '../modals';
+
+const week = getWeek();
 
 const store = useSearchStore();
-const week = getWeek();
-console.log('🚀  week:', week);
+const { dateRange } = storeToRefs(store);
 
 const handleSelectPrevious = () => {
-  store.desiredSchedule;
+  store.handleDateRange({
+    from: addWeeksToDate(new Date(dateRange.value.from), -1).toLocaleDateString('sv'),
+    to: addWeeksToDate(new Date(dateRange.value.to), -1).toLocaleDateString('sv'),
+  });
 };
-const handleSelectNext = () => {};
+const handleSelectNext = () => {
+  store.handleDateRange({
+    from: addWeeksToDate(new Date(dateRange.value.from), 1).toLocaleDateString('sv'),
+    to: addWeeksToDate(new Date(dateRange.value.to), 1).toLocaleDateString('sv'),
+  });
+};
 
 const getWeekRange = () => {
   return week.currentDay === new Date().toLocaleDateString('sv') ? 'Текущая неделя' : 'undef';
 };
 
 const isActive = ref(false);
-console.log('🚀  isActive:', isActive.value);
 
 const handleSelectedDate = (event: Date[]) => {
   const from = event[0].toLocaleDateString('sv');
@@ -48,8 +58,6 @@ const handleSelectedDate = (event: Date[]) => {
             <v-date-picker
               :model-value="[week.monday, week.sunday]"
               multiple
-              range
-              type="week"
               show-adjacent-months
               @update:modelValue="handleSelectedDate"
             />
