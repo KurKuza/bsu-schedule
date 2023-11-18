@@ -3,7 +3,7 @@ import { useSearchStore } from '@/entities/schedule';
 import { getWeek } from '@/shared/schedule';
 import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { addWeeksToDate } from '../modals';
+import { addWeeksToDate, dateLabel } from '../modals';
 
 const week = getWeek();
 
@@ -24,7 +24,9 @@ const handleSelectNext = () => {
 };
 
 const getWeekRange = () => {
-  return week.currentDay === new Date().toLocaleDateString('sv') ? 'Текущая неделя' : 'undef';
+  return week.monday === new Date(dateRange.value.from).toLocaleDateString('sv')
+    ? 'Текущая неделя'
+    : `${dateLabel(`${dateRange.value.from + '—' + dateRange.value.to}`)}`;
 };
 
 const isActive = ref(false);
