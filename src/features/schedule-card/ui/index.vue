@@ -30,10 +30,7 @@ const props = defineProps({
   padding: 0.4rem 0;
   background-color: inherit;
 }
-.divider {
-  margin: auto;
-  height: 60px;
-}
+
 .title {
   margin: 0;
 }

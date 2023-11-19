@@ -9,10 +9,12 @@ function addDaysToSchedule(schedules: Pair[]): Schedule[] {
     const day = getDayOfWeek(new Date(element.timestart * 1000));
 
     if (day === lastDay) {
+      schedulesWithDays.push({ divider: true });
       schedulesWithDays.push(element);
     } else {
       schedulesWithDays.push({ day });
       schedulesWithDays.push(element);
+
       lastDay = day;
     }
   }

@@ -24,10 +24,11 @@ watch(store.getDesiredSchedule, async () => {
 
 <template>
   <div class="schedule-container">
-    <template v-for="(schedule, index) of schedules">
-      <ScheduleDayTitle v-if="'day' in schedule" :key="index" :day-title="schedule.day" />
-      <ScheduleCard v-if="'pairnumber' in schedule" :key="index" :schedule="schedule" />
-    </template>
+    <div v-for="(schedule, index) of schedules" :key="index">
+      <ScheduleDayTitle v-if="'day' in schedule" :day-title="schedule.day" />
+      <ScheduleCard v-if="'pairnumber' in schedule" :schedule="schedule" />
+      <v-divider v-if="'divider' in schedule" class="divider" />
+    </div>
   </div>
 </template>
 
@@ -36,5 +37,9 @@ watch(store.getDesiredSchedule, async () => {
   border-radius: 1rem;
   padding: 0.8rem;
   background-color: rgb(var(--v-theme-surface));
+}
+
+.divider {
+  margin: 0.4rem 1rem;
 }
 </style>

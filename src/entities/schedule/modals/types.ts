@@ -1,4 +1,4 @@
-export type Schedule = Pair | { day: string };
+export type Schedule = Pair | { day: string } | { divider: boolean };
 
 export type Pair = {
   pairnumber: number;

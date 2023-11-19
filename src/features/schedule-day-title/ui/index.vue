@@ -17,7 +17,8 @@ const { dayTitle } = props;
 .title {
   text-transform: capitalize !important;
   margin: 0;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
+  margin-top: 1rem;
 
   font-size: 1.3rem;
   font-weight: 700;
