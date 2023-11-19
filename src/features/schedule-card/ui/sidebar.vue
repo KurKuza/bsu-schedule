@@ -34,7 +34,7 @@ function convertMsToLocalTime(ms: number) {
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   text-wrap: nowrap;
   padding: 0.2rem 0;
 }

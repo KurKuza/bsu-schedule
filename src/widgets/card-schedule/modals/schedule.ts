@@ -8,12 +8,9 @@ function addDaysToSchedule(schedules: Pair[]): Schedule[] {
     const element = schedules[i];
     const day = getDayOfWeek(new Date(element.timestart * 1000));
 
-    console.log('🚀  day:', day);
-    console.log('🚀  lastDay:', lastDay);
     if (day === lastDay) {
       schedulesWithDays.push(element);
     } else {
-      // schedulesWithDays.splice(i, 0, { day });
       schedulesWithDays.push({ day });
       schedulesWithDays.push(element);
       lastDay = day;
