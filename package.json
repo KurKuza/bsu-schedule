@@ -17,7 +17,7 @@
     "@capacitor/core": "^5.4.1",
     "@capacitor/ios": "5.4.1",
     "@date-io/dayjs": "^2.17.0",
-    "@vueuse/components": "^10.4.1",
+    "@vueuse/core": "^10.6.1",
     "axios": "^1.5.1",
     "axios-cache-interceptor": "^1",
     "core-js": "^3.8.3",
