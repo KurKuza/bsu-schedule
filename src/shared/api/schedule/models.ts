@@ -25,9 +25,10 @@ export const scheduleApi = {
     console.log('🚀  week:', week);
 
     console.log('🚀date  getSchedule:', date);
-    const res = apiInstance.get<Pair[]>(
-      `/schedule/${content.type}/${content.name}?from=${week.currentDay}&to=${week.dayAfter7days}&qdist=1`,
-    );
+    const request = `/schedule/${content.type}/${content.name}?from=${week.currentDay}&to=${week.dayAfter7days}&qdist=1`;
+
+    console.log('🚀  request:', 'https://beluni.ru' + request);
+    const res = apiInstance.get<Pair[]>(request);
     console.log('🚀getSchedule  res:', res);
 
     return res;

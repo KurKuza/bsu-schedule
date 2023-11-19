@@ -10,7 +10,8 @@ const schedules = ref<Schedule[]>();
 const store = useSearchStore();
 
 async function convertedSchedule() {
-  const finalSchedule = addDaysToSchedule((await store.getDesiredSchedule()).data);
+  const resDesiredSchedule = await store.getDesiredSchedule();
+  const finalSchedule = addDaysToSchedule(resDesiredSchedule.data);
   console.log('🚀  finalSchedule:', finalSchedule);
   return finalSchedule;
 }

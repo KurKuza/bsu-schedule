@@ -58,7 +58,7 @@ const handleSelectedDate = (event: Date[]) => {
         <v-dialog v-model="isActive">
           <v-locale-provider>
             <v-date-picker
-              :model-value="[week.monday, week.sunday]"
+              :model-value="[dateRange.from, dateRange.to]"
               multiple
               show-adjacent-months
               @update:modelValue="handleSelectedDate"
