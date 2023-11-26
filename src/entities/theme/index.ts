@@ -1,1 +1,1 @@
-export { handleToggleTheme } from './modals';
+export {} from './modals';

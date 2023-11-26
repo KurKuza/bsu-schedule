@@ -1,0 +1,1 @@
+export { bsuLocalStorage } from './lib';

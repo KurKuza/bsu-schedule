@@ -11,7 +11,7 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '^.*bsu-api': {
+      'bsu-api/': {
         target: 'https://beluni.ru',
         changeOrigin: true,
         secure: false,
