@@ -33,18 +33,20 @@ onClickOutside(searchElem, () => {
       <div class="header">
         <v-card-title class="pa-0">Расписание</v-card-title>
 
-        <v-autocomplete
-          v-if="isSearch"
-          ref="searchElem"
-          hide-details
-          :items="searchSupply"
-          variant="solo"
-          class="search"
-          placeholder="Search"
-          prepend-inner-icon="mdi-magnify"
-          @blur="saveSelected"
-          @input="store.handleSearchSupply"
-        />
+        <search role="search">
+          <v-autocomplete
+            v-if="isSearch"
+            ref="searchElem"
+            hide-details
+            :items="searchSupply"
+            variant="solo"
+            class="search"
+            placeholder="Search"
+            prepend-inner-icon="mdi-magnify"
+            @blur="saveSelected"
+            @input="store.handleSearchSupply"
+          />
+        </search>
 
         <div class="icons">
           <v-btn v-if="!isSearch" icon size="small" @click="handleClickSearch">
