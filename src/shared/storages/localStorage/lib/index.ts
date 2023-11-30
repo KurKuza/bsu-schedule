@@ -1,13 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable no-restricted-syntax */
 interface LocalStorages {
   THEME_MODE: 'light' | 'dark' | 'auto';
+  COMPACT_MODE: boolean;
 }
 
 export const bsuLocalStorage = {
   get(key: keyof LocalStorages) {
-    return localStorage.getItem(key as unknown as string);
+    const res = localStorage.getItem(key);
+
+    return res;
   },
-  set(key: string, value: string) {
-    localStorage.setItem(key, value);
+  set<T>(key: keyof LocalStorages, value: T) {
+    localStorage.setItem(key, JSON.stringify(value));
   },
 };

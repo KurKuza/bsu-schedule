@@ -1,6 +1,6 @@
 import { Pair, Schedule } from '@/entities/schedule';
 
-function addDaysToSchedule(schedules: Pair[]): Schedule[] {
+function addDaysToSchedule(schedules: Pair[], showDivider = true): Schedule[] {
   const schedulesWithDays: Schedule[] = [];
   let lastDay = '';
 
@@ -9,7 +9,7 @@ function addDaysToSchedule(schedules: Pair[]): Schedule[] {
     const day = getDayOfWeek(new Date(element.timestart * 1000));
 
     if (day === lastDay) {
-      schedulesWithDays.push({ divider: true });
+      showDivider && schedulesWithDays.push({ divider: true });
       schedulesWithDays.push(element);
     } else {
       schedulesWithDays.push({ day });

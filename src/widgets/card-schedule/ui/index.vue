@@ -4,20 +4,26 @@ import { ScheduleCard } from '@/features/schedule-card';
 import { ScheduleDayTitle } from '@/features/schedule-day-title';
 import { ref, watch } from 'vue';
 import { addDaysToSchedule } from '../modals';
+import { useUISettings } from '@/entities/ui-settings';
+import { storeToRefs } from 'pinia';
+import { bsuLocalStorage } from '@/shared/storages/localStorage';
 
 const schedules = ref<Schedule[]>();
 
 const store = useSearchStore();
 
+const uiStore = useUISettings();
+const { compactMode } = storeToRefs(uiStore);
+
 async function convertedSchedule() {
   const resDesiredSchedule = await store.getDesiredSchedule();
-  const finalSchedule = addDaysToSchedule(resDesiredSchedule.data);
-  console.log('🚀  finalSchedule:', finalSchedule);
+  const finalSchedule = addDaysToSchedule(resDesiredSchedule.data, !compactMode.value);
+
   return finalSchedule;
 }
 schedules.value = await convertedSchedule();
 
-watch(store.getDesiredSchedule, async () => {
+watch((store.getDesiredSchedule, compactMode), async () => {
   schedules.value = await convertedSchedule();
 });
 </script>

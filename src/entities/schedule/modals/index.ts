@@ -40,7 +40,6 @@ export const useSearchStore = defineStore('search', () => {
     desiredSchedule.value = searchBSU.value.find((item) => item.name === value);
   };
   const handleDateRange = (value: { from: string; to: string }) => {
-    console.log('🚀  value:', value);
     dateRange.value = value;
   };
 
